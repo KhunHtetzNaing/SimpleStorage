@@ -282,11 +282,12 @@ class SimpleStorageHelper {
     fun requestStorageAccess(
         requestCode: Int = storage.requestCodeStorageAccess,
         initialRootPath: StorageType = StorageType.EXTERNAL,
+        initialCustomPath: String? = null,
         expectedStorageType: StorageType = StorageType.UNKNOWN
     ) {
         pickerToOpenOnceGranted = 0
         originalRequestCode = requestCode
-        storage.requestStorageAccess(requestCode, initialRootPath, expectedStorageType)
+        storage.requestStorageAccess(requestCode, initialRootPath, initialCustomPath,expectedStorageType)
     }
 
     @JvmOverloads

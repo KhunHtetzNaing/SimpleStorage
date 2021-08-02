@@ -144,6 +144,7 @@ class SimpleStorage private constructor(private val wrapper: ComponentWrapper) {
     fun requestStorageAccess(
         requestCode: Int = requestCodeStorageAccess,
         initialRootPath: StorageType = StorageType.EXTERNAL,
+        initialCustomPath: String? = null,
         expectedStorageType: StorageType = StorageType.UNKNOWN
     ) {
         if (!hasStoragePermission(context)) {
@@ -167,6 +168,24 @@ class SimpleStorage private constructor(private val wrapper: ComponentWrapper) {
         } else {
             externalStorageRootAccessIntent
         }
+
+        // Sorry for java code style
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if(initialCustomPath!=null){
+                val uri: Uri? = intent.getParcelableExtra(DocumentsContract.EXTRA_INITIAL_URI)
+                if (uri!=null) {
+                    val dir = initialCustomPath.replace("/", "%2F")
+                    var scheme = uri.toString().replace("/root/", "/document/")
+                    scheme += "%3A$dir"
+
+                    intent.putExtra(
+                        DocumentsContract.EXTRA_INITIAL_URI,
+                        Uri.parse(scheme)
+                    )
+                }
+            }
+        }
+
         if (wrapper.startActivityForResult(intent, requestCode)) {
             requestCodeStorageAccess = requestCode
             expectedStorageTypeForAccessRequest = expectedStorageType

@@ -78,7 +78,8 @@ class MainActivity : AppCompatActivity() {
         btnRequestStoragePermission.setOnClickListener { permissionRequest.check() }
 
         btnRequestStorageAccess.setOnClickListener {
-            storageHelper.requestStorageAccess(REQUEST_CODE_STORAGE_ACCESS)
+//            storageHelper.requestStorageAccess(REQUEST_CODE_STORAGE_ACCESS)
+            storageHelper.requestStorageAccess(REQUEST_CODE_STORAGE_ACCESS, initialCustomPath = "zFontTool");
         }
 
         btnRequestFullStorageAccess.run {

@@ -80,8 +80,8 @@ publishing {
     repositories {
         maven {
             credentials {
-                username = anggrayudi_maven_username
-                password = anggrayudi_maven_password
+//                username = anggrayudi_maven_username
+//                password = anggrayudi_maven_password
             }
             url = version.endsWith('SNAPSHOT')
                     ? 'https://oss.sonatype.org/content/repositories/snapshots/'
