@@ -40,7 +40,7 @@ subprojects {
             buildToolsVersion '30.0.2'
 
             defaultConfig {
-                minSdkVersion 19
+                minSdkVersion 16
                 targetSdkVersion 30
                 versionCode 1
                 versionName "$VERSION_NAME"
